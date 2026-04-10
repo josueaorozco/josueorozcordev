@@ -2,10 +2,12 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { useScrollReveal } from '../hooks/useScrollReveal'
 import { HiEnvelope, HiArrowUpRight } from 'react-icons/hi2'
-import { FaGithub, FaLinkedin, FaInstagram } from 'react-icons/fa'
+import { FaGithub, FaLinkedin, FaInstagram, FaWhatsapp } from 'react-icons/fa'
+
+const WA_HREF = 'https://wa.me/573014467460?text=Hola%20Josue%2C%20vi%20tu%20portafolio%20y%20me%20interesa%20contactarte%21'
 
 const CONTACT_ITEMS = [
-  { icon: HiEnvelope, label: 'Email', value: 'josueorozcor@gmail.com', href: 'mailto:josueorozcor@gmail.com', color: '#D16969' },
+  { icon: HiEnvelope, label: 'Email', value: 'contact@josueorozcor.dev', href: 'mailto:contact@josueorozcor.dev', color: '#D16969' },
 ]
 
 const SOCIAL = [
@@ -18,7 +20,7 @@ function FormField({ label, id, type = 'text', multiline, placeholder }) {
   const base = {
     background: 'var(--surface)',
     border: '1px solid var(--border)',
-    color: '#D4D4D4',
+    color: 'var(--text)',
     fontFamily: 'inherit',
     outline: 'none',
     transition: 'border-color 0.2s, background 0.2s',
@@ -28,20 +30,114 @@ function FormField({ label, id, type = 'text', multiline, placeholder }) {
     width: '100%',
   }
   const focus = { borderColor: 'rgba(209,105,105,0.5)', background: 'rgba(209,105,105,0.04)' }
-  const blur  = { borderColor: 'rgba(255,255,255,0.08)', background: '#1e1e1e' }
+  const blur  = { borderColor: 'var(--border)', background: 'var(--surface)' }
 
   return (
     <div className="flex flex-col gap-1.5">
-      <label htmlFor={id} className="text-xs font-mono uppercase tracking-wider" style={{ color: '#4a4a4a' }}>
+      <label htmlFor={id} className="text-xs font-mono uppercase tracking-wider" style={{ color: 'var(--text-muted)' }}>
         {label}
       </label>
       {multiline
-        ? <textarea id={id} name={id} rows={5} placeholder={placeholder} style={base} resize="none"
+        ? <textarea id={id} name={id} rows={5} placeholder={placeholder} style={base}
             onFocus={e => Object.assign(e.target.style, focus)} onBlur={e => Object.assign(e.target.style, blur)} />
         : <input   id={id} name={id} type={type} placeholder={placeholder} style={base}
             onFocus={e => Object.assign(e.target.style, focus)} onBlur={e => Object.assign(e.target.style, blur)} />
       }
     </div>
+  )
+}
+
+function WhatsAppCard({ isVisible }) {
+  const [hovered, setHovered] = useState(false)
+
+  return (
+    <motion.a
+      href={WA_HREF}
+      target="_blank"
+      rel="noopener noreferrer"
+      initial={{ opacity: 0, y: 20 }}
+      animate={isVisible ? { opacity: 1, y: 0 } : {}}
+      transition={{ delay: 0.45, duration: 0.6 }}
+      onHoverStart={() => setHovered(true)}
+      onHoverEnd={() => setHovered(false)}
+      whileHover={{ y: -4, scale: 1.01 }}
+      whileTap={{ scale: 0.98 }}
+      className="relative block rounded-2xl overflow-hidden cursor-pointer"
+      style={{
+        background: hovered
+          ? 'linear-gradient(135deg, rgba(37,211,102,0.15), rgba(37,211,102,0.08))'
+          : 'var(--surface)',
+        border: hovered ? '1px solid rgba(37,211,102,0.4)' : '1px solid var(--border)',
+        transition: 'all 0.3s ease',
+        boxShadow: hovered ? '0 12px 40px rgba(37,211,102,0.12)' : 'none',
+      }}
+    >
+      {/* Glow blob */}
+      <div className="absolute top-0 right-0 w-32 h-32 rounded-full pointer-events-none"
+        style={{
+          background: 'radial-gradient(circle, rgba(37,211,102,0.12) 0%, transparent 70%)',
+          filter: 'blur(20px)',
+          transform: 'translate(20%, -20%)',
+          opacity: hovered ? 1 : 0.4,
+          transition: 'opacity 0.3s',
+        }} />
+
+      <div className="relative z-10 p-6">
+        {/* OR divider label */}
+        <div className="flex items-center gap-3 mb-5">
+          <div className="flex-1 h-px" style={{ background: 'var(--border)' }} />
+          <span className="text-xs font-mono px-2 py-0.5 rounded-full"
+            style={{ background: 'rgba(37,211,102,0.1)', border: '1px solid rgba(37,211,102,0.2)', color: '#25D366' }}>
+            o también
+          </span>
+          <div className="flex-1 h-px" style={{ background: 'var(--border)' }} />
+        </div>
+
+        {/* Icon + text */}
+        <div className="flex items-start gap-4 mb-5">
+          <motion.div
+            animate={{ rotate: hovered ? [0, -8, 8, -4, 0] : 0 }}
+            transition={{ duration: 0.5 }}
+            className="w-14 h-14 rounded-2xl flex items-center justify-center flex-shrink-0"
+            style={{
+              background: 'linear-gradient(135deg, #25D366, #128C7E)',
+              boxShadow: '0 8px 24px rgba(37,211,102,0.35)',
+            }}
+          >
+            <FaWhatsapp size={28} color="white" />
+          </motion.div>
+
+          <div>
+            <h4 className="font-bold text-base mb-1" style={{ color: 'var(--text)' }}>
+              Chateemos por WhatsApp
+            </h4>
+            <p className="text-sm leading-relaxed" style={{ color: 'var(--text-dim)' }}>
+              Respuesta más rápida. Cuéntame tu idea y te respondo en minutos.
+            </p>
+          </div>
+        </div>
+
+        {/* CTA button */}
+        <div className="flex items-center justify-between">
+          <span className="text-xs font-mono" style={{ color: 'var(--text-muted)' }}>
+            wa.me/573014467460
+          </span>
+          <motion.div
+            animate={{ x: hovered ? 4 : 0 }}
+            transition={{ duration: 0.2 }}
+            className="flex items-center gap-1.5 text-sm font-semibold px-4 py-2 rounded-xl"
+            style={{
+              background: 'linear-gradient(135deg, #25D366, #128C7E)',
+              color: 'white',
+              boxShadow: '0 4px 16px rgba(37,211,102,0.3)',
+            }}
+          >
+            Abrir chat
+            <HiArrowUpRight size={14} />
+          </motion.div>
+        </div>
+      </div>
+    </motion.a>
   )
 }
 
@@ -115,7 +211,7 @@ export default function Contact() {
                   className="py-12 text-center">
                   <div className="text-3xl mb-3">❌</div>
                   <h3 className="text-lg font-bold mb-1" style={{ color: 'var(--text)' }}>Algo salió mal</h3>
-                  <p className="text-sm mb-4" style={{ color: 'var(--text-muted)' }}>Por favor intenta de nuevo o escríbeme directo al email.</p>
+                  <p className="text-sm mb-4" style={{ color: 'var(--text-muted)' }}>Intenta de nuevo o escríbeme directo.</p>
                   <button onClick={() => setStatus('idle')} className="text-sm underline" style={{ color: '#D16969' }}>Intentar de nuevo</button>
                 </motion.div>
               ) : (
@@ -146,10 +242,11 @@ export default function Contact() {
             </div>
           </motion.div>
 
-          {/* Sidebar info */}
+          {/* Sidebar */}
           <motion.div initial={{ opacity: 0, x: 30 }} animate={isVisible ? { opacity: 1, x: 0 } : {}}
             transition={{ delay: 0.3, duration: 0.6 }} className="space-y-3">
 
+            {/* Email */}
             {CONTACT_ITEMS.map(({ icon: Icon, label, value, href, color }, i) => (
               <motion.div key={i} initial={{ opacity: 0, y: 10 }} animate={isVisible ? { opacity: 1, y: 0 } : {}}
                 transition={{ delay: 0.35 + i * 0.08 }}
@@ -160,22 +257,26 @@ export default function Contact() {
                   <Icon size={14} style={{ color }} />
                 </div>
                 <div>
-                  <p className="text-xs font-mono mb-0.5 uppercase tracking-wider" style={{ color: '#3d3d3d' }}>{label}</p>
+                  <p className="text-xs font-mono mb-0.5 uppercase tracking-wider" style={{ color: 'var(--text-muted)' }}>{label}</p>
                   {href
-                    ? <a href={href} className="text-sm font-medium" style={{ color: '#858585' }}>{value}</a>
-                    : <span className="text-sm font-medium" style={{ color: '#858585' }}>{value}</span>}
+                    ? <a href={href} className="text-sm font-medium" style={{ color: 'var(--text-dim)' }}>{value}</a>
+                    : <span className="text-sm font-medium" style={{ color: 'var(--text-dim)' }}>{value}</span>}
                 </div>
               </motion.div>
             ))}
 
-            <div className="pt-2">
-              <p className="text-xs font-mono uppercase tracking-widest mb-3" style={{ color: '#3d3d3d' }}>Social</p>
+            {/* WhatsApp card */}
+            <WhatsAppCard isVisible={isVisible} />
+
+            {/* Social */}
+            <div className="pt-1">
+              <p className="text-xs font-mono uppercase tracking-widest mb-3" style={{ color: 'var(--text-muted)' }}>Social</p>
               <div className="flex gap-2">
                 {SOCIAL.map(({ icon: Icon, href, label, color }) => (
                   <motion.a key={label} href={href} target="_blank" rel="noopener noreferrer"
                     whileHover={{ scale: 1.1, y: -2 }} whileTap={{ scale: 0.95 }}
                     className="w-10 h-10 rounded-xl flex items-center justify-center"
-                    style={{ background: '#1e1e1e', border: '1px solid rgba(255,255,255,0.08)' }}
+                    style={{ background: 'var(--surface)', border: '1px solid var(--border)' }}
                     title={label}>
                     <Icon size={16} style={{ color }} />
                   </motion.a>

@@ -9,7 +9,7 @@ const STATS = [
 ]
 
 const FACTS = [
-  { icon: HiLanguage,    text: 'Español (nativo) · Inglés B1 (in corso) · Italiano (livello intermedio)' },
+  { icon: HiLanguage,    text: 'Español (nativo) · English B1 (in progress) · Italiano (livello intermedio)' },
   { icon: HiCommandLine, text: 'Python · Kotlin · JavaScript · PL/SQL' },
 ]
 

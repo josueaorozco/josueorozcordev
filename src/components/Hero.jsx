@@ -110,7 +110,7 @@ export default function Hero() {
               <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-mono"
                 style={{ background: 'rgba(209,105,105,0.1)', border: '1px solid rgba(209,105,105,0.25)', color: '#D16969' }}>
                 <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
-                Disponible · josueorozcor@gmail.com
+                Disponible · contact@josueorozcor.dev
               </span>
             </motion.div>
 
@@ -150,7 +150,7 @@ export default function Hero() {
                 Ver mi trabajo
               </motion.button>
               <motion.a whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.97 }}
-                href="mailto:josueorozcor@gmail.com"
+                href="mailto:contact@josueorozcor.dev"
                 className="px-6 py-2.5 rounded-lg font-semibold text-sm flex items-center gap-2"
                 style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)', color: '#858585' }}>
                 <HiEnvelope size={15} />
