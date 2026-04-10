@@ -39,8 +39,12 @@ function ExperienceCard({ exp, index, isVisible }) {
       transition={{ delay: index * 0.15, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
       className="relative pl-8 md:pl-0">
 
-      <div className="md:hidden absolute left-0 top-6 w-3 h-3 rounded-full border-2 z-10"
-        style={{ borderColor: exp.color, background: '#141414' }} />
+      {/* Mobile timeline dot */}
+      <div className="md:hidden absolute left-0 top-7 w-2.5 h-2.5 rounded-full border-2 z-10"
+        style={{ borderColor: exp.color, background: 'var(--bg)' }} />
+      {/* Mobile vertical line between cards */}
+      <div className="md:hidden absolute left-[4px] top-10 bottom-0 w-px -mb-4"
+        style={{ background: `linear-gradient(to bottom, ${exp.color}60, transparent)` }} />
 
       <div className="md:grid md:grid-cols-[180px_1fr] md:gap-10 items-start">
         {/* Date */}

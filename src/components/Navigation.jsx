@@ -119,7 +119,7 @@ export default function Navigation() {
       {/* Mobile button */}
       <motion.button initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5 }}
         onClick={() => setMobileOpen(!mobileOpen)}
-        className="md:hidden fixed bottom-6 right-6 z-50 w-13 h-13 w-12 h-12 rounded-xl flex items-center justify-center"
+        className="md:hidden fixed bottom-6 right-6 z-50 w-12 h-12 rounded-xl flex items-center justify-center"
         style={{ background: '#D16969', boxShadow: '0 6px 24px rgba(209,105,105,0.35)' }}>
         <motion.div animate={{ rotate: mobileOpen ? 180 : 0 }} transition={{ duration: 0.3 }}>
           {mobileOpen ? <HiXMark size={22} color="white" /> : <HiBars3 size={22} color="white" />}

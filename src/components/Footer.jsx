@@ -26,8 +26,8 @@ export default function Footer() {
         </div>
       </footer>
 
-      {/* VS Code status bar */}
-      <div className="vscode-statusbar">
+      {/* VS Code status bar — hidden on mobile to avoid overlap with nav button */}
+      <div className="vscode-statusbar hidden md:flex">
         <span>⎇ main</span>
         <span>Ln 1, Col 1</span>
         <span>UTF-8</span>

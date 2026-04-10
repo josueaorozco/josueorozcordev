@@ -101,7 +101,7 @@ export default function Hero() {
     <section id="hero" className="relative min-h-screen flex items-center bg-grid overflow-hidden px-6">
       <Orbs />
 
-      <div className="relative z-10 max-w-6xl mx-auto w-full py-32">
+      <div className="relative z-10 max-w-6xl mx-auto w-full pt-24 pb-32 md:py-32">
         <div className="grid md:grid-cols-[1fr_auto] gap-12 items-center">
           {/* Left: text */}
           <motion.div variants={container} initial="hidden" animate="show">
@@ -109,8 +109,9 @@ export default function Hero() {
             <motion.div variants={item} className="flex mb-6">
               <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-mono"
                 style={{ background: 'rgba(209,105,105,0.1)', border: '1px solid rgba(209,105,105,0.25)', color: '#D16969' }}>
-                <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
-                Disponible · contact@josueorozcor.dev
+                <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse flex-shrink-0" />
+                <span className="hidden sm:inline">Disponible · contact@josueorozcor.dev</span>
+                <span className="sm:hidden">Disponible para proyectos</span>
               </span>
             </motion.div>
 
@@ -142,7 +143,7 @@ export default function Hero() {
               Especialista en Python, Kotlin, AWS y SQL.
             </motion.p>
 
-            <motion.div variants={item} className="flex flex-wrap gap-3 mb-10">
+            <motion.div variants={item} className="flex flex-col sm:flex-row gap-3 mb-10">
               <motion.button whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.97 }}
                 onClick={scrollToAbout}
                 className="px-6 py-2.5 rounded-lg font-semibold text-white text-sm flex items-center gap-2"

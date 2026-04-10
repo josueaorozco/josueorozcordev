@@ -65,17 +65,17 @@ function WhatsAppCard({ isVisible }) {
       className="relative block rounded-2xl overflow-hidden cursor-pointer"
       style={{
         background: hovered
-          ? 'linear-gradient(135deg, rgba(37,211,102,0.15), rgba(37,211,102,0.08))'
+          ? 'linear-gradient(135deg, rgba(209,105,105,0.15), rgba(209,105,105,0.08))'
           : 'var(--surface)',
-        border: hovered ? '1px solid rgba(37,211,102,0.4)' : '1px solid var(--border)',
+        border: hovered ? '1px solid rgba(209,105,105,0.4)' : '1px solid var(--border)',
         transition: 'all 0.3s ease',
-        boxShadow: hovered ? '0 12px 40px rgba(37,211,102,0.12)' : 'none',
+        boxShadow: hovered ? '0 12px 40px rgba(209,105,105,0.12)' : 'none',
       }}
     >
       {/* Glow blob */}
       <div className="absolute top-0 right-0 w-32 h-32 rounded-full pointer-events-none"
         style={{
-          background: 'radial-gradient(circle, rgba(37,211,102,0.12) 0%, transparent 70%)',
+          background: 'radial-gradient(circle, rgba(209,105,105,0.12) 0%, transparent 70%)',
           filter: 'blur(20px)',
           transform: 'translate(20%, -20%)',
           opacity: hovered ? 1 : 0.4,
@@ -87,7 +87,7 @@ function WhatsAppCard({ isVisible }) {
         <div className="flex items-center gap-3 mb-5">
           <div className="flex-1 h-px" style={{ background: 'var(--border)' }} />
           <span className="text-xs font-mono px-2 py-0.5 rounded-full"
-            style={{ background: 'rgba(37,211,102,0.1)', border: '1px solid rgba(37,211,102,0.2)', color: '#25D366' }}>
+            style={{ background: 'rgba(209,105,105,0.1)', border: '1px solid rgba(209,105,105,0.2)', color: '#D16969' }}>
             o también
           </span>
           <div className="flex-1 h-px" style={{ background: 'var(--border)' }} />
@@ -100,8 +100,8 @@ function WhatsAppCard({ isVisible }) {
             transition={{ duration: 0.5 }}
             className="w-14 h-14 rounded-2xl flex items-center justify-center flex-shrink-0"
             style={{
-              background: 'linear-gradient(135deg, #25D366, #128C7E)',
-              boxShadow: '0 8px 24px rgba(37,211,102,0.35)',
+              background: 'linear-gradient(135deg, #D16969, #CE9178)',
+              boxShadow: '0 8px 24px rgba(209,105,105,0.35)',
             }}
           >
             <FaWhatsapp size={28} color="white" />
@@ -127,9 +127,9 @@ function WhatsAppCard({ isVisible }) {
             transition={{ duration: 0.2 }}
             className="flex items-center gap-1.5 text-sm font-semibold px-4 py-2 rounded-xl"
             style={{
-              background: 'linear-gradient(135deg, #25D366, #128C7E)',
+              background: 'linear-gradient(135deg, #D16969, #CE9178)',
               color: 'white',
-              boxShadow: '0 4px 16px rgba(37,211,102,0.3)',
+              boxShadow: '0 4px 16px rgba(209,105,105,0.3)',
             }}
           >
             Abrir chat
@@ -162,7 +162,7 @@ export default function Contact() {
   }
 
   return (
-    <section id="contact" className="py-32 px-6 max-w-6xl mx-auto pb-40">
+    <section id="contact" className="py-32 px-6 max-w-6xl mx-auto pb-32 md:pb-40">
       <motion.div ref={ref}>
         <motion.div initial={{ opacity: 0 }} animate={isVisible ? { opacity: 1 } : {}}
           className="flex items-center gap-2 mb-8 font-mono text-xs" style={{ color: '#4a4a4a' }}>
