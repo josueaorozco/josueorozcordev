@@ -1,0 +1,211 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root,
+[data-theme="dark"] {
+  --bg:       #141414;
+  --bg-dark:  #0f0f0f;
+  --surface:  #1e1e1e;
+  --surface2: #252526;
+  --border:   rgba(255,255,255,0.07);
+  --red:      #D16969;
+  --orange:   #CE9178;
+  --teal:     #4EC9B0;
+  --blue:     #4FC1FF;
+  --yellow:   #DCDCAA;
+  --green:    #6A9955;
+  --text:     #D4D4D4;
+  --text-dim: #858585;
+  --text-muted: #4a4a4a;
+  --punct:    #808080;
+  --line-num: #3d3d3d;
+}
+
+[data-theme="light"] {
+  --bg:       #f5f5f5;
+  --bg-dark:  #ebebeb;
+  --surface:  #ffffff;
+  --surface2: #f0f0f0;
+  --border:   rgba(0,0,0,0.08);
+  --red:      #b5393a;
+  --orange:   #a1500e;
+  --teal:     #0d7a6b;
+  --blue:     #0070c1;
+  --yellow:   #7a6500;
+  --green:    #3c7a2b;
+  --text:     #1e1e1e;
+  --text-dim: #555555;
+  --text-muted: #888888;
+  --punct:    #999999;
+  --line-num: #cccccc;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  background: var(--bg);
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: rgba(209,105,105,0.35);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover { background: rgba(209,105,105,0.6); }
+
+::selection {
+  background: rgba(209,105,105,0.25);
+  color: #D4D4D4;
+}
+
+@layer components {
+  .glass {
+    background: var(--surface);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--border);
+  }
+
+  .gradient-text {
+    background: linear-gradient(135deg, #D16969, #CE9178);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .section-title {
+    @apply text-3xl md:text-4xl font-bold mb-2;
+  }
+
+  /* VS Code syntax token classes */
+  .tok-keyword  { color: var(--blue); }
+  .tok-fn       { color: var(--yellow); }
+  .tok-string   { color: var(--orange); }
+  .tok-comment  { color: var(--green); font-style: italic; }
+  .tok-class    { color: var(--teal); }
+  .tok-var      { color: #9CDCFE; }
+  .tok-number   { color: #B5CEA8; }
+  .tok-punct    { color: var(--punct); }
+  .tok-self     { color: var(--blue); }
+  .tok-prop     { color: #9CDCFE; }
+}
+
+/* Dot grid background */
+.bg-grid {
+  background-image: radial-gradient(rgba(209,105,105,0.1) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+[data-theme="light"] .bg-grid {
+  background-image: radial-gradient(rgba(177,56,57,0.15) 1px, transparent 1px);
+}
+
+/* Cursor glow */
+.cursor-glow {
+  pointer-events: none;
+  position: fixed;
+  width: 700px; height: 700px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(209,105,105,0.05) 0%, transparent 65%);
+  transform: translate(-50%, -50%);
+  transition: left 0.6s ease, top 0.6s ease;
+  z-index: 0;
+}
+
+/* Typewriter cursor */
+.typewriter-cursor::after {
+  content: '█';
+  animation: blink 1s step-end infinite;
+  color: #D16969;
+  font-size: 0.85em;
+  margin-left: 2px;
+}
+@keyframes blink {
+  0%,100% { opacity: 1; }
+  50%      { opacity: 0; }
+}
+
+@keyframes float {
+  0%,100% { transform: translateY(0); }
+  50%     { transform: translateY(-14px); }
+}
+
+/* VS Code status bar */
+.vscode-statusbar {
+  background: #D16969;
+  color: #fff;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 0 12px;
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  z-index: 100;
+  user-select: none;
+}
+.vscode-statusbar span { opacity: 0.9; }
+
+/* Timeline gradient line */
+.timeline-line {
+  background: linear-gradient(to bottom, transparent, #D16969, #CE9178, transparent);
+}
+
+/* Code card */
+.code-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12.5px;
+  line-height: 1.7;
+  transition: background 0.3s, border-color 0.3s;
+}
+.code-card-header {
+  background: var(--surface2);
+  border-bottom: 1px solid var(--border);
+  padding: 8px 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: background 0.3s;
+}
+.code-card-dot { width: 10px; height: 10px; border-radius: 50%; }
+.code-card-tab {
+  margin-left: 8px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-bottom: none;
+  border-radius: 4px 4px 0 0;
+  padding: 2px 12px;
+  font-size: 11px;
+  color: var(--text);
+  opacity: 0.8;
+}
+.code-card-body {
+  padding: 16px 20px;
+  display: flex;
+  gap: 16px;
+}
+.code-line-nums {
+  color: var(--line-num);
+  text-align: right;
+  user-select: none;
+  flex-shrink: 0;
+  line-height: 1.7;
+}
